@@ -1,3 +1,4 @@
+from MySQLdb import DATETIME
 from django.http import HttpResponse
 from django.shortcuts import render
 from . models import *
@@ -47,9 +48,15 @@ def complaint(request):
     date_time=datetime.datetime.now()
     if 'submit' in request.POST:
        complaints_text = request.POST['complaints_text'] 
-       q1=Complaint(complaint_text=complaints_text, date_time=date_time, USER_id = request.session['uid'])
+       q1=Complaint(complaint_text=complaints_text, date_time=date_time, USER_id=request.session['uid'])
        q1.save()
        return HttpResponse("<script>alert('Complaint submitted successfully');window.location='/userindex'</script>")
     return render(request, 'user/complaint.html')
 def feedback(request):
-    
+    date_time=datetime.datetime.now()
+    if 'submit' in request.POST:
+       feedback_text = request.POST['feedback_text'] 
+       q1=Feedback(feedback_text=feedback_text, date_time=date_time, USER_id=request.session['uid'])
+       q1.save()
+       return HttpResponse("<script>alert('Feedback submitted successfully');window.location='/userindex'</script>")
+    return render(request, 'user/feedback.html')
