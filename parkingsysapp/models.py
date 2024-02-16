@@ -17,6 +17,7 @@ class User(models.Model):
 class Feedback(models.Model):
     USER=models.ForeignKey(User,on_delete=models.CASCADE)
     feedback_text = models.CharField(max_length=2000)  
+    response_text = models.CharField(max_length=2000)
     date_time = models.CharField(max_length=255)
 
 class Complaint(models.Model):

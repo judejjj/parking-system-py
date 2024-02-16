@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Type Your Reply</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,20 +19,21 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h3 {
+        h2 {
             margin-top: 0;
             color: #007bff;
         }
         label {
             font-weight: bold;
         }
-        .form-control {
+        .reply-textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             box-sizing: border-box;
+            resize: vertical;
         }
         .btn {
             background-color: #007bff;
@@ -48,21 +49,15 @@
         }
     </style>
 </head>
-<body>  
+<body>
     <div class="container">
-        <h3>User Profile</h3>
+        <h2>Type Your Reply</h2>
         <form method="post">
             {% csrf_token %}
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" value="{{ user.firstname }}">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" class="form-control" value="{{ user.phone }}">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ user.email }}">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control">
-            <button type="submit" name="submit" class="btn">Save Changes</button>
+            <label for="reply">Your Reply:</label>
+            <textarea name="reply_text" class="reply-textarea" rows="5" placeholder="Type your reply here"></textarea>
+            <button type="submit" class="btn" name="resolved">Submit</button>
         </form>
     </div>
-</body>s
+</body>
 </html>
